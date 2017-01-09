@@ -1,0 +1,208 @@
+<div ng-hide='open'>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id='modal'>
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click='fnclosemodal("myModal")'>&times;</button>
+                    <h4 class="modal-title">Payment Information</h4>
+                </div>
+                <div class="modal-body" id='modalbody1'>
+                    <div class="col-md-6 col-sm-6">
+                        <div>
+                            <span><b>Payment Type</b></span>
+                            <span class="asetrick"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="dropdown">
+                            <div id="divtext1">
+                                <span>
+									<input type='text' placeholder='Select' name='myInput' ng-model="newobject.paymentinfo" id='divtext1input' required >
+				          		</span>
+                                <button id='divtext1button' class="dropdown-toggle" data-toggle="dropdown">
+				          			<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+				          		</button>
+                                <ul class="dropdown-menu">
+                                    <input type="text" placeholder="Search" class="innersearchbar" ng-model="newobject.paymentinfo">
+                                    <li ng-repeat="x in Paymentdetails | filter:newobject.paymentinfo" class="liclick">
+                                        <div ng-click='PaymentData(x)'>{{x}}</div>
+                                    </li>
+                                </ul>
+                                <div class="errormessage" ng-if="isChecked && !userform.myInput.$valid">Please fill out this field</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div>
+                            <span><b>Accounting Type</b></span>
+                            <span class="asetrick"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="dropdown">
+                            <div id="divtext2">
+                                <span>
+					          	<input type='text' id='divtext2input' name="myInput1" placeholder='Select' ng-model="newobject.accountfeildtext" ng-required='true'>
+					          	</span>
+                                <button id='divtext2button' class="dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+					          	</button>
+
+                                <ul class="dropdown-menu">
+                                    <input type="text" placeholder="Search" class="innersearchbar">
+                                    <li ng-repeat="x in accountdetails | filter:newobject.accountfeildtext" class="liclick">
+                                        <div ng-click="accountData(x.value);">{{x.value}}</div>
+                                    </li>
+                                </ul>
+                                <h5 class="errormessage" ng-if="isChecked && !userform.myInput1.$valid">Please fill out this field</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 seconddiv">
+                            <div>
+                                <span><b>Frequency</b></span>
+                                <span class="asetrick"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="dropdown">
+                                <div id="divtext3">
+                                    <span>
+					          		<input type='text' placeholder='Annually' name="myInput2" id='divtext3input' 
+									  ng-model="newobject.frequency" ng-required='true'>
+					          		</span>
+                                    <button id='divtext3button' class="dropdown-toggle" data-toggle="dropdown">
+					          		<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+					          		</button>
+                                    <ul class="dropdown-menu">
+                                        <input type="text" placeholder="Search" class="innersearchbarsmall">
+                                        <li ng-repeat="x in dropDownListData | filter:newobject.frequency" class="liclick">
+                                            <div ng-click='frequency(x)'>{{x}}</div>
+                                        </li>
+                                    </ul>
+                                    <h5 class="errormessage" ng-if="isChecked && !userform.myInput2.$valid">Please fill out this field</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 thirddiv">
+                            <div>
+                                <span><b>Period Start Date</b></span>
+                                <span class="asetrick"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                            </div>
+                            <div id='divtext4'>
+                                <span>
+				          		<input type='text' data-format="MM/dd/yyyy" ng-readonly="true" id="dateRangePicker" class='divtext4input' ng-model='newobject.date' name="myInput3" ng-required='true'></span>
+                                <span class="fa fa-calendar-o calender-icon" aria-hidden="true">
+				          		</span>
+                                <h5 class="errormessage" ng-if="isChecked && !userform.myInput3.$valid">Please fill out this field</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3" id='thirddiv2'>
+                            <div>
+                                <span><b>Payment Timing</b></span>
+                                <span class="asetrick"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="dropdown">
+                                <div id="divtext5">
+                                    <span>
+			          				<input type='text' placeholder='Select' id='divtext5input' name="myInput4" ng-model='newobject.paymentfieldtext' ng-required='true'></span>
+                                    <button id='divtext5button' class="dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+			          				</button>
+                                    <ul class="dropdown-menu">
+                                        <input type="text" placeholder="Search" class="innersearchbarsmall">
+                                        <li ng-repeat="x in paymentTimingdetails | filter:newobject.paymentfieldtext" class="liclick">
+                                            <div ng-click='paymentTimmingData(x.value)'>{{x.value}}</div>
+                                        </li>
+                                    </ul>
+                                    <h5 class="errormessage" ng-if="isChecked && !userform.myInput4.$valid">Please fill out this field</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 fourthdiv" ng-if='paymentdueOn'>
+                            <div>
+                                <span><b>Payment Due On</b></span>
+                                <span class="asetrick"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="dropdown">
+                                <div id="divtext5">
+                                    <span>
+		          					<input type='text' placeholder='Specific Day of Period' name='myInput5' 
+									  ng-model='newobject.PaymentDueon' id='divtext5input' ng-required='true'></span>
+                                    <button id='divtext5button' class="dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+		          					</button>
+                                    <ul class="dropdown-menu">
+                                        <input type="text" placeholder="Search" class="innersearchbarsmall">
+                                        <li ng-repeat="y in paymentdueondetails|filter:newobject.PaymentDueon" class="liclick">
+                                            <div ng-click='PayamentDueOn(y.value)'>{{y.value}}</div>
+                                        </li>
+                                    </ul>
+                                    <h5 class="errormessage" ng-if="isChecked && !userform.myInput5.$valid">Please fill out this field</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 fouthdiv2" ng-if='paymentduedaY'>
+                            <div>
+                                <span><b>Payment Due Day</b></span>
+                                <span class="asetrick"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="dropdown">
+                                <div id="divtext6">
+                                    <span><input type='text' placeholder='Select' name="myInput6" 
+									ng-model='newobject.paymentdueday' id='divtext6input' ng-required='true'></span>
+                                    <button id='divtext5button' class="dropdown-toggle" data-toggle="dropdown">
+										<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+			          				</button>
+                                    <ul class="dropdown-menu">
+                                        <input type="text" placeholder="Search" class="innersearchbarsmall">
+                                        <li ng-repeat="y in paymentDueDay" class="liclick">
+                                            <div ng-click='paymentDueData(y.value)'>{{y.value}}</div>
+                                        </li>
+                                    </ul>
+                                    <h5 class="errormessage" ng-if="isChecked && !userform.myInput6.$valid">Please fill out this field</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 fifthdiv">
+                            <div>
+                                <span><b>Accounting Cost Center</b></span>
+                            </div>
+                            <div id="divtext7">
+                                <span>
+			          			<input type='text' placeholder='0' id='divtext7input'></span>
+                                <button id='divtext7button'>
+			          			<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+			          			</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id='checkbox'>
+                        <input type="checkbox">
+                        <span><b>Option Term Payment</b></span>
+                    </div>
+                    <div id='checkboxdiv'>
+                        <h5><b>Description</b></h5>
+                        <div id='descdiv'>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2">
+                            <span id='info'><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                            <div>Information</div>
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <span id='paramsa'>
+					    	<i class="fa fa-calendar-o" aria-hidden="true"></i>
+					    	</span>
+                            <div>Parameters</div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <span id='arrowbutton'><button id='arrowbutton2' ng-click='fnValidationCheck()&& (userform.$invalid==false && show() )'><i class="fa fa-angle-right" aria-hidden="true"></i></button></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
