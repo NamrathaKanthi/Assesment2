@@ -5,49 +5,39 @@
     <title>Task</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
-    </script>
-    <script type="text/javascript" src="js/taskcontroller.js"></script>
-    <script type="text/javascript" src='js/taskservice.js'></script>
-    <script type="text/javascript" src='js/taskdirective.js'></script>
-    <script type="text/javascript" src='js/taskfactory.js'></script>
-    <style type="text/css">
-    @import url("css/custom.css");
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 
-<body ng-controller='taskCtrl'>
+<body ng-controller='taskCtrl as vm'>
     <div class="container-fluid">
-        <form class="row mainrow" name='userform' novalidate ng-class="{'error':isChecked}">
+       <!--  main div -->
+        <form class="row" id='mainrow' name='userform' novalidate vm.ng-class="{'error':isChecked}">
+        <!-- main table headings -->
             <div class="row mainrow">
                 <div class="col-sm-12 col-md-12" id='tableheadingdiv'>
-                    <span class="col-md-2 col-sm-2"></span>
-                    <span class="col-md-2 col-sm-2"><strong>Frequency Type</strong></span>
-                    <span class="col-md-2 col-sm-2"><strong>Start Date</strong></span>
-                    <span class="col-md-2 col-sm-2"><strong>End Date</strong></span>
-                    <span class="col-md-2 col-sm-2"><strong>Total Cash With Tax</strong></span>
-                    <span class="col-md-2 col-sm-2"><strong>Actions</strong></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>Frequency Type</strong></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>Start Date</strong></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>End Date</strong></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>Total Cash With Tax</strong></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>Actions</strong></span>
                 </div>
-                <div class="row mainrow" ng-repeat='x in Details track by $index'>
+               <!--  main table grouping -->
+                <div class="row" id="mainrow" ng-repeat='x in vm.DaTa track by $index'>
                     <div class="col-md-12 col-sm-12" id='firsttable'>
                         <span class="col-md-2 col-sm-2">{{x.paymentinfo}}</span>
                         <span class="col-md-8 col-sm-8"></span>
-                        <button ng-click='showingtable($index)' id='angledownbutton'>
+                        <button ng-click='vm.showingtable($index)' id='angledownbutton'>
                             <span class="col-md-2 col-sm-2" id='angledownicon'>
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                             </span>
                         </button>
                     </div>
-                    <table class="table" ng-show="showtable == $index">
+                    <table class="table" ng-show="vm.showtable == $index">
                         <tbody>
                             <tr ng-repeat='y in x.details'>
                                 <td class="col-md-2 col-sm-2">
@@ -60,8 +50,8 @@
                                 <td class="col-md-2 col-sm-2">10/11/2016</td>
                                 <td class="col-md-2 col-sm-2">{{0.0}}</td>
                                 <td class="col-md-2 col-sm-2">
-                                    <button class="buttonclass" data-toggle="modal" data-target="#myModal" ng-hide="viewField" ng-click="fnEdit(x)"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></button>
-                                    <button class="buttonclass" ng-hide="viewField" data-toggle="modal" data-target="#Deletemodal"><span id='closeicon'><i class="fa fa-times" aria-hidden="true"></i></span>
+                                    <button class="buttonclass" data-toggle="modal" data-target="#myModal" vm.ng-hide="viewField" ng-click="vm.fnEdit(x)"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></button>
+                                    <button class="buttonclass" vm.ng-hide="viewField" data-toggle="modal" data-target="#Deletemodal"><span id='closeicon'><i class="fa fa-times" aria-hidden="true"></i></span>
                                     </button>
                                 </td>
                             </tr>
@@ -69,12 +59,11 @@
                     </table>
                 </div>
             </div>
-            <firstmodel></firstmodel>
-            <secondmodel></secondmodel>
         </form>
-        <div class="row mainrow">
+        <!-- Add button for adding data -->
+        <div class="row " id='mainrow1'>
             <div class="col-md-12 col-sm-12" id='buttondiv'>
-                <button data-toggle="modal" data-target="#myModal" id='button' ng-click="newobject = {};">
+                <button id='button' ng-click="vm.openModal()">
                     <span id='plus'><i class="fa fa-plus" aria-hidden="true"></i></span>
                     <span id='add'>Add</span></button>
             </div>
@@ -91,7 +80,7 @@
                         <p>Are you sure want to delete this??</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deletedata($parent.$index)">Okay</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.deletedata($parent.$index)">Okay</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -109,12 +98,21 @@
                         <p>These are unsaved changes.continue and lose changes?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" ng-click='fnDiscardChanges()'>Okay</button>
+                        <button type="button" class="btn btn-primary" ng-click='vm.fnDiscardChanges()'>Okay</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src='js/bootstrap.min.js'></script>
+        <script type="text/javascript" src='js/angular.min.js'></script>
+        <script type="text/javascript" src='js/ui-bootstrap-tpls-2.4.0.min.js'></script>
+        <script type="text/javascript" src='js/bootstrap-datepicker.min.js'></script>
+        <script type="text/javascript" src="js/taskcontroller.js"></script>
+        <script type="text/javascript" src='js/taskservice.js'></script>
+        <script type="text/javascript" src='js/taskmodal1controller.js'></script>
+        <script type="text/javascript" src='js/taskmodal2controller.js'></script>
+        <script type="text/javascript" src='js/taskfactory.js'></script>
 </body>
 
 </html>
