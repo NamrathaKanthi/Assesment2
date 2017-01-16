@@ -1,0 +1,121 @@
+<div ng-controller='modelcontent2controller as MCC2'>
+<div class="modal-header">
+    <button type="button" class="close">&times;</button>
+    <h4 class="modal-title">Payment Parameters</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <!-- ng-if='MCC2.display' -->
+        <div class="col-md-6 col-sm-6">
+            <div>
+                <!--  feild name -->
+                <p><b>Growth Type</b></p>
+            </div>
+            <!--  dropdown -->
+            <div class="dropdown">
+                <div id="divtext8">
+                    <span><input type='text' placeholder='Fixed' ng-model="MCC2.newobject.Growthdata" id='divtext8input' name="myInput7">
+                                    </span>
+                    <button id='divtext8button' class="dropdown-toggle" data-toggle="dropdown">
+                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <input type="text" placeholder="Search" class="innersearchbar">
+                        <li ng-repeat="x in MCC2.growthType | filter:MCC2.newobject.Growthdata" class="liclick">
+                            <div ng-click='MCC2.GrowthData(x.value)'>{{x.value}}</div>
+                        </li>
+                    </ul>
+                    <h5 class="errormessage" ng-if="MCC2.isChecked && !userform.myInput7.$valid">Please fill out this field</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div>
+                <!--  feild name -->
+                <!-- ng-if='MCC2.fixed' -->
+                <p><b>Fixed Growth</b></p>
+            </div>
+            <!-- ng-if='MCC2.percent' -->
+            <!-- <div>
+                    <p><b>Percent Growth</b></p>
+                </div> -->
+            <div id="divtext9">
+                <span><input type='text' placeholder='0' ng-model="MCC2.Fixedgrowthdata" id='divtext9input'>
+                                    </span>
+            </div>
+        </div>
+    </div>
+    <div class="row sixthdiv">
+        <!-- ng-if='MCC2.display' -->
+        <div class="col-md-6 col-sm-6">
+            <div>
+                <!--  feild name -->
+                <p><b>Number of Schedules</b></p>
+            </div>
+            <div id="divtext10">
+                <span><input type='text' placeholder='0' ng-model="MCC2.Numberofschedules" id='divtext10input'>
+                            </span>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div>
+                <!--  feild name -->
+                <p><b>Adjust Every(X)Months</b></p>
+            </div>
+            <div id="divtext11">
+                <span><input type='text' placeholder='0' ng-model="MCC2.newobject.every" id='divtext11input'>
+                            </span>
+            </div>
+        </div>
+    </div>
+    <div class="row sixthdiv">
+        <div class="col-md-4 col-sm-4">
+            <!-- ng-if='MCC2.display' -->
+            <div>
+                <!--  feild name -->
+                <p><b>Charge Amount Basis</b><span class="asetrick"><i class="fa fa-asterisk" aria-hidden="true"></i></span></p>
+            </div>
+            <!--  dropdown -->
+            <div class="dropdown">
+                <div id="divtext12">
+                    <span><input type='text' placeholder='0' ng-model="MCC2.newobject.chargeamountbasis" id='divtext12input' name="myInput8">
+                                </span>
+                    <button id='divtext12button' class="dropdown-toggle" data-toggle="dropdown">
+                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                    </button>
+                    <!-- <ul class="dropdown-menu">
+                        <input type="text" placeholder="Search" class="innersearchbar">
+                        <li ng-repeat="x in MCC2.chargeAmountBasisdetails | filter:MCC2.newobject.chargeamountbasis" class="liclick">
+                            <div ng-click='MCC2.chargeamountData(x.value)'>{{x.value}}</div>
+                        </li>
+                    </ul>
+                    <h5 class="errormessage" ng-if="MCC2.isChecked && !userform.myInput8.$valid">Please fill out this field</h5> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <!-- ng-if='MCC2.display' -->
+            <div>
+                <p><b>Contract Rentable</b></p>
+            </div>
+            <span class="col-md-6 col-sm-6" id='contract-rentable'>
+                            <div id="divtext13">
+                                <span>
+                                    <input type='text' placeholder='0' ng-model="MCC2.contractrentable" id='divtext13input'>
+                                </span>
+        </div>
+        </span>
+        <span class="col-md-6 col-sm-6" id='square-feet'>Square-feet</span>
+    </div>
+    <div class="col-md-4 col-sm-4">
+        <div>
+            <p><b>Amount Per Basis</b></p>
+        </div>
+        <div id="divtext14">
+            <span><input type='text' placeholder='0' ng-model="MCC2.amountperbasis" id='divtext14input'>
+            </span>
+        </div>
+    </div>
+</div>
+</div>
+</div>

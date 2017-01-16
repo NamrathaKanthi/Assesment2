@@ -1,0 +1,33 @@
+ <!-- Modal content-->
+
+      <div class="modal-content modal-lg" ng-controller='mainmodelcontroller as MMC' style="margin-left: -100px;">
+        <div ng-include src="'html/firstcontent.html'" ng-show="MMC.firstmodal"></div>
+        <div ng-include src="'html/secondcontent.html'" ng-show="MMC.secondmodal"></div>
+        <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-2 col-sm-2">
+                <span id='info'><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                <div>Information</div>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <span id='paramsa'>
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </span>
+                <div>Parameters</div>
+            </div>
+             <div class="col-md-4 col-sm-4">
+            </div>
+            <div class="col-md-4 col-sm-4">
+            <button type="button" class="btn btn-default" ng-click="MMC.previous()" ng-show="MMC.previous1"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span></button>
+            <button type="button" class="btn btn-default" ng-click="MMC.next()"><span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+           <!--  <button type="button" class="btn btn-default" ng-click="MMC.save()">Save</button> -->
+            <button type="button" class="btn btn-default" ng-click="MMC.Generate()" ng-show='MMC.generate'>Generate</button>
+            </div>
+        </div>
+            
+        </div>
+            
+      </div>
+
+
+
