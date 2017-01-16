@@ -1,0 +1,146 @@
+<!-- modal intilaization -->
+<div class="modal-content modal-lg" id='modal2'>
+    <!-- modal header -->
+    <div class="modal-header">
+        <!-- modal closing button -->
+        <button type="button" class="close" ng-click='tsM2.fnclosemodal("myModal1","secondmodal")'>&times;</button>
+        <!-- header in modal -->
+        <h4 class="modal-title">Payment Parameters</h4>
+    </div>
+    <!-- modal body -->
+    <div class="modal-body" id='modalbody2'>
+        <div class="row">
+            <!-- ng-if='tsM2.display' -->
+            <div class="col-md-6 col-sm-6">
+                <div>
+                    <!--  feild name -->
+                    <p><b>Growth Type</b></p>
+                </div>
+                <!--  dropdown -->
+                <div class="dropdown">
+                    <div id="divtext8">
+                        <span><input type='text' placeholder='Fixed' ng-model="tsM2.newobject.Growthdata" id='divtext8input' name="myInput7">
+                                    </span>
+                        <button id='divtext8button' class="dropdown-toggle" data-toggle="dropdown">
+                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <input type="text" placeholder="Search" class="innersearchbar">
+                            <li ng-repeat="x in tsM2.growthType | filter:tsM2.newobject.Growthdata" class="liclick">
+                                <div ng-click='tsM2.GrowthData(x.value)'>{{x.value}}</div>
+                            </li>
+                        </ul>
+                        <h5 class="errormessage" ng-if="tsM2.isChecked && !userform.myInput7.$valid">Please fill out this field</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div>
+                    <!--  feild name -->
+                    <!-- ng-if='tsM2.fixed' -->
+                    <p><b>Fixed Growth</b></p>
+                </div>
+                <!-- ng-if='tsM2.percent' -->
+                <!-- <div>
+                    <p><b>Percent Growth</b></p>
+                </div> -->
+                <div id="divtext9">
+                    <span><input type='text' placeholder='0' ng-model="tsM2.Fixedgrowthdata" id='divtext9input'>
+                                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row sixthdiv">
+            <!-- ng-if='tsM2.display' -->
+            <div class="col-md-6 col-sm-6">
+                <div>
+                    <!--  feild name -->
+                    <p><b>Number of Schedules</b></p>
+                </div>
+                <div id="divtext10">
+                    <span><input type='text' placeholder='0' ng-model="tsM2.Numberofschedules" id='divtext10input'>
+                            </span>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div>
+                    <!--  feild name -->
+                    <p><b>Adjust Every(X)Months</b></p>
+                </div>
+                <div id="divtext11">
+                    <span><input type='text' placeholder='0' ng-model="tsM2.newobject.every" id='divtext11input'>
+                            </span>
+                </div>
+            </div>
+        </div>
+        <div class="row sixthdiv">
+            <div class="col-md-4 col-sm-4">
+                <!-- ng-if='tsM2.display' -->
+                <div>
+                    <!--  feild name -->
+                    <p><b>Charge Amount Basis</b><span class="asetrick"><i class="fa fa-asterisk" aria-hidden="true"></i></span></p>
+                </div>
+                <!--  dropdown -->
+                <div class="dropdown">
+                    <div id="divtext12">
+                        <span><input type='text' placeholder='0' ng-model="tsM2.newobject.chargeamountbasis" id='divtext12input' name="myInput8">
+                                </span>
+                        <button id='divtext12button' class="dropdown-toggle" data-toggle="dropdown">
+                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <input type="text" placeholder="Search" class="innersearchbar">
+                            <li ng-repeat="x in tsM2.chargeAmountBasisdetails | filter:tsM2.newobject.chargeamountbasis" class="liclick">
+                                <div ng-click='tsM2.chargeamountData(x.value)'>{{x.value}}</div>
+                            </li>
+                        </ul>
+                        <h5 class="errormessage" ng-if="tsM2.isChecked && !userform.myInput8.$valid">Please fill out this field</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <!-- ng-if='tsM2.display' -->
+                <div>
+                    <p><b>Contract Rentable</b></p>
+                </div>
+                <span class="col-md-6 col-sm-6" id='contract-rentable'>
+                            <div id="divtext13">
+                                <span>
+                                    <input type='text' placeholder='0' ng-model="tsM2.contractrentable" id='divtext13input'>
+                                </span>
+            </div>
+            </span>
+            <span class="col-md-6 col-sm-6" id='square-feet'>Square-feet</span>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div>
+                <p><b>Amount Per Basis</b></p>
+            </div>
+            <div id="divtext14">
+                <span><input type='text' placeholder='0' ng-model="tsM2.amountperbasis" id='divtext14input'>
+            </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-2 col-sm-2">
+            <span id='info1'><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+            <div>Information</div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <span id='params'><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
+            <div>Parameters</div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <button id='savebutton' data-dismiss="modal" ng-click='tsM2.save()'>Save</button>
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <span id='arrowbutton'><button id='arrowbutton2' ng-click='tsM2.fnValidationCheck()&& (userform.$invalid==false && tsM2.close())'><i class="fa fa-angle-left" aria-hidden="true"></i></button></span>
+        </div>
+    </div>
+</div>
+</div>

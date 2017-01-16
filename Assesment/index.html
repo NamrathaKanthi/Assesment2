@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html ng-app='TaskApp'>
+
+<head>
+    <title>Task</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+
+<body ng-controller='taskCtrl as vm'>
+    <div class="container-fluid">
+       <!--  main div -->
+        <form class="row" id='mainrow' name='userform' novalidate vm.ng-class="{'error':isChecked}">
+        <!-- main table headings -->
+            <div class="row mainrow">
+                <div class="col-sm-12 col-md-12" id='tableheadingdiv'>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>Frequency Type</strong></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>Start Date</strong></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>End Date</strong></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>Total Cash With Tax</strong></span>
+                    <span class="col-md-2 col-sm-2 tableheadingdiv-span"><strong>Actions</strong></span>
+                </div>
+               <!--  main table grouping -->
+                <div class="row" id="mainrow" ng-repeat='x in vm.DaTa track by $index'>
+                    <div class="col-md-12 col-sm-12" id='firsttable'>
+                        <span class="col-md-2 col-sm-2">{{x.paymentinfo}}</span>
+                        <span class="col-md-8 col-sm-8"></span>
+                        <button ng-click='vm.showingtable($index)' id='angledownbutton'>
+                            <span class="col-md-2 col-sm-2" id='angledownicon'>
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <table class="table" ng-show="vm.showtable == $index">
+                        <tbody>
+                            <tr ng-repeat='y in x.details'>
+                                <td class="col-md-2 col-sm-2">
+                                    <span id='hourglassicon'>
+                                    <i class="fa fa-hourglass-half" aria-hidden="true"></i>
+                                    </span>
+                                </td>
+                                <td class="col-md-2 col-sm-2">{{y.frequency}}</td>
+                                <td class="col-md-2 col-sm-2">{{y.periodStartdate}}</td>
+                                <td class="col-md-2 col-sm-2">10/11/2016</td>
+                                <td class="col-md-2 col-sm-2">{{0.0}}</td>
+                                <td class="col-md-2 col-sm-2">
+                                    <button class="buttonclass" data-toggle="modal" data-target="#myModal" vm.ng-hide="viewField" ng-click="vm.fnEdit(x)"><span><i class="fa fa-pencil" aria-hidden="true"></i></span></button>
+                                    <button class="buttonclass" vm.ng-hide="viewField" data-toggle="modal" data-target="#Deletemodal"><span id='closeicon'><i class="fa fa-times" aria-hidden="true"></i></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+        <!-- Add button for adding data -->
+        <div class="row " id='mainrow1'>
+            <div class="col-md-12 col-sm-12" id='buttondiv'>
+                <button id='button' ng-click="vm.openModal()">
+                    <span id='plus'><i class="fa fa-plus" aria-hidden="true"></i></span>
+                    <span id='add'>Add</span></button>
+            </div>
+        </div>
+        <div class="modal fade" id="Deletemodal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure want to delete this??</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.deletedata($parent.$index)">Okay</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="discardModel" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Warning</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>These are unsaved changes.continue and lose changes?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click='vm.fnDiscardChanges()'>Okay</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src='js/bootstrap.min.js'></script>
+        <script type="text/javascript" src='js/angular.min.js'></script>
+        <script type="text/javascript" src='js/ui-bootstrap-tpls-2.4.0.min.js'></script>
+        <script type="text/javascript" src='js/bootstrap-datepicker.min.js'></script>
+        <script type="text/javascript" src="js/taskcontroller.js"></script>
+        <script type="text/javascript" src='js/taskservice.js'></script>
+        <script type="text/javascript" src='js/taskmodal1controller.js'></script>
+        <script type="text/javascript" src='js/taskmodal2controller.js'></script>
+        <script type="text/javascript" src='js/taskfactory.js'></script>
+</body>
+
+</html>
